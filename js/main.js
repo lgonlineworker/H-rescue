@@ -10,6 +10,7 @@ function start(){
 
 	//Variáveis de som do jogo
 	var somDisparo=document.getElementById("somDisparo");
+	var somBomba=document.getElementById("somBomba");
 	var somExplosao=document.getElementById("somExplosao");
 	var musica=document.getElementById("musica");
 	var somGameover=document.getElementById("somGameover");
@@ -214,7 +215,7 @@ function start(){
 		if (Bomba==true) {
 			
 		Bomba=false;
-		somDisparo.play();
+		somBomba.play();
 		let topo = parseInt($("#jogador").css("top"))
 		let posicaoX= parseInt($("#jogador").css("left"))
 		let bombaX = posicaoX+90;
@@ -233,12 +234,13 @@ function start(){
 			let posicaoX = parseInt($("#bomba").css("left"));
 			$("#bomba").css("left",posicaoX+35);
 	
-					if (topo>454) {		
-				window.clearInterval(tempoBomba);
-				tempoBomba=null;
-				$("#bomba").remove();
-				Bomba=true;	
-				}
+				if (topo>454) {
+					somBomba.pause();
+					window.clearInterval(tempoBomba);
+					tempoBomba=null;
+					$("#bomba").remove();
+					Bomba=true;	
+					}
 		} // Fecha moveBomba()
 	} // Fecha bomba()
 
@@ -421,7 +423,7 @@ function start(){
 
 	function placar() {
 	
-		$("#placar").html("<h2> Level: " + level + " Score: " + pontos + " Salvos: " + salvos + " Perdidos: " + perdidos + "</h2>");
+		$("#placar").html("<h2> Level: " + level + "  Score: " + pontos + "  Salvos: " + salvos + "  Perdidos: " + perdidos + "</h2>");
 		
 	} //fim da função placar
 
@@ -485,7 +487,7 @@ function start(){
 		
 		$("#fundoGame").append("<div id='fim'></div>");
 		
-		$("#fim").html("<h1> Game Over </h1><p><b>Sua pontuação foi: " + pontos + " <br>Você chegou até o level: " + level + "</b></p>" + "<button id='reinicia' onClick=reiniciaJogo()><b>Jogar Novamente</b></button>");
+		$("#fim").html("<h1> Game Over </h1><p><b>Você chegou até o level: " + level + "<br> Sua pontuação foi: " + pontos +"</b></p>" + "<button id='reinicia' onClick=reiniciaJogo()><b>Jogar Novamente</b></button>");
 		} // Fim da função gameOver();
 	
 
