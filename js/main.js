@@ -14,7 +14,7 @@ function start(){
 	var somExplosao=document.getElementById("somExplosao");
 	var musica=document.getElementById("musica");
 	var somGameover=document.getElementById("somGameover");
-	var somPerdido=document.getElementById("somPerdido");
+	var somMorteAmigo=document.getElementById("somPerdido");
 	var somResgate=document.getElementById("somResgate");
 
 
@@ -143,8 +143,7 @@ function start(){
 			
 			if (posicaoX<0) {
 			perdidos++;
-			pontos-=(level*10);
-			somPerdido.play();
+			pontos-=level*10;
 			let posicaoY = parseInt(Math.random() * 334);
 			$("#inimigo1").css("left",694);
 			$("#inimigo1").css("top",posicaoY);
@@ -159,8 +158,7 @@ function start(){
 			
 			if (posicaoX<0) {
 			perdidos++;
-			pontos-=(level*10);
-			somPerdido.play();
+			pontos-=level*10;
 			$("#inimigo2").css("left",775);	
 			}
 	} //Fim da função moveinimigo2
@@ -323,10 +321,12 @@ function start(){
 			}
 
 		if (colisao5.length>0) {
+			somMorteAmigo.play();
 			pontos-=(level*10);
 			let amigoX = parseInt($("#amigo").css("left"));
 			let amigoY = parseInt($("#amigo").css("top"));
 			explosao2(amigoX,amigoY);
+			
 
 			$("#amigo").remove();
 			$("#bomba").css("top", 700);
@@ -335,12 +335,13 @@ function start(){
 			}
 		
 		if (colisao6.length>0) {
+			somMorteAmigo.play();
 			pontos-=(level*10);
 			let amigoX = parseInt($("#amigo").css("left"));
 			let amigoY = parseInt($("#amigo").css("top"));
 			explosao2(amigoX,amigoY);
+
 			$("#amigo").remove();
-					
 			reposicionaAmigo();
 			}
 	
@@ -496,6 +497,11 @@ function start(){
 function reiniciaJogo() {
 	somGameover.pause();
 	$("#fim").remove();
+	pontos = 0;
+	salvos = 0;
+	perdidos = 0;
+	level = 1;
+	energiaAtual = 3
 	start();
 	
 } //Fim da função reiniciaJogo
