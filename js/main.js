@@ -59,6 +59,7 @@ function start(){
 	
 	$(document).keyup(function(e){
 		   jogo.pressionou[e.which] = false;
+		   document.getElementById("jogador").style.transform = 'rotate(0deg)';
 		});
 	
 	
@@ -110,6 +111,7 @@ function start(){
 		}
 		if (jogo.pressionou[TECLA.D]) {
 			let canto = parseInt($("#jogador").css("left"));
+			document.getElementById("jogador").style.transform = 'rotate(15deg)';
 			$("#jogador").css("left",canto+10);
 				if (canto>=720){
 					$("#jogador").css("left",canto-0);
@@ -117,7 +119,7 @@ function start(){
 		}
 		if (jogo.pressionou[TECLA.A]) {
 			let canto = parseInt($("#jogador").css("left"));
-			
+			document.getElementById("jogador").style.transform = 'rotate(-15deg)';
 			$("#jogador").css("left",canto-10);
 				if (canto<=20){
 					$("#jogador").css("left",canto+0);
